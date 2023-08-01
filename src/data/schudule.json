@@ -1,0 +1,108 @@
+{
+  "specialty": {
+    "SIT": {
+      "group": {
+        "2": {
+          "course": {
+            "1": [
+              {
+                "day": "Sunday",
+                "subjects": [
+                  {
+                    "subjectName": "ПОЧИВКА"
+                  }
+                ]
+              },
+              {
+                "day": "Monday",
+                "subjects": [
+                  {
+                    "subjectName": "л. Математика 2ч.",
+                    "start": "9:15",
+                    "end": "11:00",
+                    "room": "212E",
+                    "teacher": "гл.ас. д-р А.Николова"
+                  },
+                  {
+                    "subjectName": "л. ЛА",
+                    "start": "11:15",
+                    "end": "13:00",
+                    "room": "212E",
+                    "teacher": "доц. Ю. Петкова"
+                  },
+                  {
+                    "subjectName": "л. САА",
+                    "start": "13:15",
+                    "end": "15:00",
+                    "room": "114E",
+                    "teacher": "доц. Н. Калчева"
+                  }
+                ]
+              },
+              {
+                "day": "Tuesday",
+                "subjects": [
+                  {
+                    "subjectName": "с.у. ЛА",
+                    "start": "9:15",
+                    "end": "11:00",
+                    "room": "105TB",
+                    "teacher": "Галя Господинова"
+                  },
+                  {
+                    "subjectName": "с.у. Математика",
+                    "start": "11:15",
+                    "end": "13:00",
+                    "room": "НУК217",
+                    "teacher": "гл.ас. д-р А.Николова"
+                  },
+                  {
+                    "subjectName": "с.у. Английски",
+                    "start": "13:30",
+                    "end": "15:00",
+                    "room": "НУК317",
+                    "teacher": ""
+                  }
+                ]
+              },
+              {
+                "day": "Wednesday",
+                "subjects": [
+                  {
+                    "subjectName": "2a) л.у. САА",
+                    "start": "9:15",
+                    "end": "11:00",
+                    "room": "404TB",
+                    "teacher": ""
+                  },
+                  {
+                    "subjectName": "ССП",
+                    "start": "11:15",
+                    "end": "12:45",
+                    "room": "",
+                    "teacher": ""
+                  },
+                  {
+                    "subjectName": "2б) л.у. САА",
+                    "start": "13:15",
+                    "end": "15:00",
+                    "room": "404ТВ",
+                    "teacher": ""
+                  }
+                ]
+              },
+              {
+                "day": "Thursday",
+                "subjects": [{}]
+              },
+              {}
+            ],
+            "2": {}
+          }
+        },
+        "3": {}
+      }
+    },
+    "KST": {}
+  }
+}
