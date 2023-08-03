@@ -5,6 +5,25 @@ let data = require('../../../data/schudule.json');
 export default function Home() {
   let date = new Date();
   let day = date.getDay();
+  let studyDays = {
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 1,
+    6: 1,
+    0: 1
+  }
+  const dayAsString = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday"
+  }
+
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
@@ -38,8 +57,11 @@ export default function Home() {
   const [selectedCourse, setSelectedCourse] = useState(1);
 
   const [collectData, setCollectedData] = useState({});
-  const [remainingTimeText, setRemainingTimeText] = useState('');
-  const [lecturesWithRemainingTime, setLecturesWithRemainingTime] = useState(
+  const [todayLectures, setTodayLectures] = useState(
+    []
+  );
+
+  const [tommorowLectures, setTommorowLectures] = useState(
     []
   );
 
@@ -55,36 +77,71 @@ export default function Home() {
 
   function getLecture(updateData) {
     const updatedLectures = updateData.subjects?.map((element) => {
-      let hourAsString = element.start.split(':');
+      let startHourAsString = element.start.split(':');
+      let endHourAsString = element.end.split(':');
+
       let time = {
-        hour: Number(hourAsString[0]),
-        minute: Number(hourAsString[1]),
+        startHour: Number(startHourAsString[0]),
+        startMinutes: Number(startHourAsString[1]),
+        endHour: Number(endHourAsString[0]),
+        endMinutes: Number(endHourAsString[1]),
       };
       const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes();
+      now.setHours(9);
+      now.setMinutes(50);
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.startHour, time.startMinutes);
+      const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.endHour, time.endMinutes);
+
+
+
+
+
+
+      let minutesAgo = 0;
+      if (updateData.day == dayAsString[studyDays[day]]) {
+        if (now.getHours() >= start.getHours()) {
+          minutesAgo = (now.getHours() - start.getHours()) * 60 + (now.getMinutes() - start.getMinutes());
+        }
+      }
+
+      let remainingTimeText = "";
       let remainingHours, remainingMinutes;
-      if (
-        hours > time.hour ||
-        (hours === time.hour && minutes >= time.minute)
-      ) {
-        remainingHours = 24 - (hours - time.hour);
+      if (now < start) {
+        remainingHours = time.startHour - now.getHours();
+        remainingMinutes = time.startMinutes - now.getMinutes();
+
+        if (remainingMinutes < 0) {
+          remainingMinutes += 60;
+          remainingHours -= 1;
+        }
+        remainingTimeText = `Remaining ${remainingHours}h and ${remainingMinutes}m`;
+      } else if (now > end) {
+        remainingTimeText = "The lecture has already ended!"
       } else {
-        remainingHours = time.hour - hours;
+        remainingTimeText = `The lecture already starts before ${Math.floor(minutesAgo / 60)}h and ${minutesAgo % 60}m`;
       }
-      remainingMinutes = time.minute - minutes;
-      if (remainingMinutes < 0) {
-        remainingMinutes += 60;
-        remainingHours -= 1;
+
+      if (updateData.day == dayAsString[studyDays]) {
       }
-      const remainingTimeText = `Remaining ${remainingHours}h and ${remainingMinutes}m`;
       return {
         ...element,
         remainingTimeText,
       };
     });
-    setLecturesWithRemainingTime(updatedLectures);
+    setTodayLectures(updatedLectures);
   }
+  function getLectureTommrow(updateData) {
+    const updatedLectures = updateData.subjects?.map((element) => {
+      let remainingTimeText = "";
+      remainingTimeText = "You have time to next day!"
+      return {
+        ...element,
+        remainingTimeText,
+      };
+    });
+    setTommorowLectures(updatedLectures);
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -108,17 +165,21 @@ export default function Home() {
       return () => clearInterval(intervalRemainingTime);
     }
   }, [collectData]);
-
+  const [visibilityDays, setVisibilityDays] = useState(false);
   function check(e) {
     e.preventDefault();
     if (!selectedSpecialty || !selectedGroup || !selectedCourse) {
       return;
     }
-    let updateData =
+    let lectureForToday =
       data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
-        selectedCourse
-      ]?.[day];
-    if (!updateData) {
+      selectedCourse
+      ]?.[studyDays[day]];
+    let lectureForTommorow = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
+      selectedCourse
+    ]?.[studyDays[day + 1]];
+    setTommorowLectures(lectureForTommorow);
+    if (!lectureForToday) {
       document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
         elem.style.display = 'none';
       });
@@ -128,8 +189,10 @@ export default function Home() {
       elem.style.display = 'inline-block';
     });
     setDataError('');
-    setCollectedData(updateData);
-    getLecture(updateData);
+    setCollectedData(lectureForToday);
+    getLecture(lectureForToday);
+    getLectureTommrow(lectureForTommorow)
+    setVisibilityDays(true);
   }
 
   return (
@@ -214,41 +277,66 @@ export default function Home() {
           </div>
         </form>
       </div>
-      <div className="homeSection__container">
-        <span className="homeSection__dataError">{dataError}</span>
+      <div className={visibilityDays ? "homeSection__container" : "hide"} >
+        <span className="homeSection__dataError" >{dataError}</span>
         {!collectData ? (
           <h1>Empty</h1>
         ) : (
-          <span className="homeSection__lectureList">
-            {lecturesWithRemainingTime.map((key) => (
-              <span className="homeSection__lectureBox" key={key.subjectName}>
-                <h2>{key.subjectName}</h2>
-                <h2>
-                  {key.start} - {key.end}
-                </h2>
-                <h2>{key.room}</h2>
-                <h2>{key.teacher}</h2>
-                <h3>{key.remainingTimeText}</h3>
+          <span className='homeSection__lectureContainer' >
+            <span className="homeSection__lectureAndDay">
+              <h1 hidden={!visibilityDays} className='homeSection__day'>Today - {dayAsString[studyDays[day]]}</h1>
+              <span className="homeSection__lectureList">
+                {todayLectures.map((key) => (
+                  <span className="homeSection__lectureBox" key={key.subjectName}>
+                    <h2>{key.subjectName}</h2>
+                    <h2>
+                      {key.start} - {key.end}
+                    </h2>
+                    <h2>{key.room}</h2>
+                    <h2>{key.teacher}</h2>
+                    <h3>{key.remainingTimeText}</h3>
+                  </span>
+                ))}
               </span>
-            ))}
-            {/* <span className="homeSection__lectureBox lect">
-              <h2>Lekciq</h2>
-              <h2>11:11 - 12:12</h2>
-              <h2>123</h2>
-              <h2>asd</h2>
-              <h3>Remaining 1h and 1m</h3>
+
             </span>
-            <span className="homeSection__lectureBox prac">
-              <h2>Uprajnenie</h2>
-              <h2>11:11 - 12:12</h2>
-              <h2>123</h2>
-              <h2>asd</h2>
-              <h3>Remaining 1h and 1m</h3>
-            </span> */}
+            <span className="homeSection__lectureAndDay">
+              <h1 hidden={!visibilityDays} className='homeSection__day'>Next day - {dayAsString[studyDays[day + 1]]}</h1>
+              <span className="homeSection__lectureList">
+                {tommorowLectures && tommorowLectures.length > 0 ? (
+                  tommorowLectures.map((key) => (
+                    <span className="homeSection__lectureBox" key={key.subjectName}>
+                      <h2>{key.subjectName}</h2>
+                      <h2>
+                        {key.start} - {key.end}
+                      </h2>
+                      <h2>{key.room}</h2>
+                      <h2>{key.teacher}</h2>
+                      <h3>{key.remainingTimeText}</h3>
+                    </span>
+                  ))
+                ) : (console.log())}
+              </span>
+            </span>
           </span>
         )}
       </div>
-    </section>
+    </section >
   );
 }
 // ПРОВЕРКА ДАЛИ СА МИНАЛИ ЛЕКЦИИТЕ ВЕЧЕ
+
+{/* <span className="homeSection__lectureBox lect">
+          <h2>Lekciq</h2>
+          <h2>11:11 - 12:12</h2>
+          <h2>123</h2>
+          <h2>asd</h2>
+          <h3>Remaining 1h and 1m</h3>
+        </span>
+        <span className="homeSection__lectureBox prac">
+          <h2>Uprajnenie</h2>
+          <h2>11:11 - 12:12</h2>
+          <h2>123</h2>
+          <h2>asd</h2>
+          <h3>Remaining 1h and 1m</h3>
+        </span> */}

@@ -92,8 +92,12 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    justify-content: space-between;
     color: colors.$theme-text;
+  }
+  &__lectureAndDay {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   &__lectureBox {
     // border: 1px solid black;
@@ -102,10 +106,45 @@
     box-shadow: 1px 1px 10px #000;
     border-radius: 6px;
   }
+  &__lectureContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 100px;
+    color: #fff;
+  }
+  &__today,
+  &__tommorow {
+    display: flex;
+    flex-direction: column;
+  }
+  .lect {
+    background-color: #784bc1;
+  }
+  .prac {
+    background-color: #212121;
+  }
 }
-.lect {
-  background-color: #784bc1;
-}
-.prac {
-  background-color: #212121;
+
+@media screen and (max-width: 1000px) {
+  .homeSection {
+    &__selects {
+      flex-direction: column;
+    }
+    &__container {
+      width: 95%;
+    }
+    &__nameContainer {
+      font-size: 22px;
+      text-align: center;
+    }
+
+    &__lectureList {
+      flex-direction: column;
+      gap: 20px;
+    }
+    &__lectureBox {
+      width: 100%;
+    }
+  }
 }
