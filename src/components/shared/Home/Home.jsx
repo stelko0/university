@@ -87,8 +87,7 @@ export default function Home() {
         endMinutes: Number(endHourAsString[1]),
       };
       const now = new Date();
-      now.setHours(9);
-      now.setMinutes(50);
+
       const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.startHour, time.startMinutes);
       const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.endHour, time.endMinutes);
 
@@ -98,7 +97,7 @@ export default function Home() {
 
 
       let minutesAgo = 0;
-      if (updateData.day == dayAsString[studyDays[day]]) {
+      if (updateData.day === dayAsString[studyDays[day]]) {
         if (now.getHours() >= start.getHours()) {
           minutesAgo = (now.getHours() - start.getHours()) * 60 + (now.getMinutes() - start.getMinutes());
         }
@@ -121,7 +120,7 @@ export default function Home() {
         remainingTimeText = `The lecture already starts before ${Math.floor(minutesAgo / 60)}h and ${minutesAgo % 60}m`;
       }
 
-      if (updateData.day == dayAsString[studyDays]) {
+      if (updateData.day === dayAsString[studyDays]) {
       }
       return {
         ...element,
@@ -324,19 +323,3 @@ export default function Home() {
     </section >
   );
 }
-// ПРОВЕРКА ДАЛИ СА МИНАЛИ ЛЕКЦИИТЕ ВЕЧЕ
-
-{/* <span className="homeSection__lectureBox lect">
-          <h2>Lekciq</h2>
-          <h2>11:11 - 12:12</h2>
-          <h2>123</h2>
-          <h2>asd</h2>
-          <h3>Remaining 1h and 1m</h3>
-        </span>
-        <span className="homeSection__lectureBox prac">
-          <h2>Uprajnenie</h2>
-          <h2>11:11 - 12:12</h2>
-          <h2>123</h2>
-          <h2>asd</h2>
-          <h3>Remaining 1h and 1m</h3>
-        </span> */}
