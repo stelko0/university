@@ -54,13 +54,13 @@ export default function Home() {
   const subGroup = [
     { value: "", text: "-- Choose a subgroup", disabled: true },
     { value: "a", text: "A" },
-    { value: "b", text: "B" }
+    { value: "a", text: "B" }
   ]
 
   const [selectedSpecialty, setSelectedSpecialty] = useState('SIT');
   const [selectedGroup, setSelectedGroup] = useState(2);
   const [selectedCourse, setSelectedCourse] = useState(2);
-  const [selectedSubGroup, setSelectedSubGroup] = useState("A")
+  const [selectedSubGroup, setSelectedSubGroup] = useState("a")
 
   const [collectData, setCollectedData] = useState({});
   const [todayLectures, setTodayLectures] = useState(
