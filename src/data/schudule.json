@@ -4,7 +4,7 @@
       "group": {
         "2": {
           "course": {
-            "1": [
+            "2": [
               {
                 "day": "Sunday",
                 "subjects": [
@@ -17,25 +17,25 @@
                 "day": "Monday",
                 "subjects": [
                   {
-                    "subjectName": "л. Математика 2ч.",
+                    "subjectName": "ССП - 3ч.",
                     "start": "9:15",
                     "end": "11:00",
-                    "room": "212E",
-                    "teacher": "гл.ас. д-р А.Николова"
+                    "room": "",
+                    "teacher": ""
                   },
                   {
-                    "subjectName": "л. ЛА",
+                    "subjectName": "л. СА",
                     "start": "11:15",
                     "end": "13:00",
-                    "room": "212E",
-                    "teacher": "доц. Ю. Петкова"
+                    "room": "114М",
+                    "teacher": "гл.ас. д-р М. Тодорова"
                   },
                   {
-                    "subjectName": "л. САА",
-                    "start": "13:15",
+                    "subjectName": "с. у. СА",
+                    "start": "13:30",
                     "end": "15:00",
-                    "room": "114E",
-                    "teacher": "доц. Н. Калчева"
+                    "room": "516",
+                    "teacher": "гл.ас. д-р М. Тодорова"
                   }
                 ]
               },
@@ -43,25 +43,25 @@
                 "day": "Tuesday",
                 "subjects": [
                   {
-                    "subjectName": "с.у. ЛА",
-                    "start": "9:15",
-                    "end": "11:00",
-                    "room": "105TB",
-                    "teacher": "Галя Господинова"
-                  },
-                  {
-                    "subjectName": "с.у. Математика",
+                    "subjectName": "с.у. УСП (четна седмица)",
                     "start": "11:15",
                     "end": "13:00",
-                    "room": "НУК217",
-                    "teacher": "гл.ас. д-р А.Николова"
+                    "room": "404ТВ",
+                    "teacher": "Нели Калчева"
                   },
                   {
-                    "subjectName": "с.у. Английски",
-                    "start": "13:30",
+                    "subjectName": "л. ОК",
+                    "start": "13:15",
                     "end": "15:00",
-                    "room": "НУК317",
-                    "teacher": ""
+                    "room": "114М",
+                    "teacher": "доц. Ю. Петкова"
+                  },
+                  {
+                    "subjectName": "л. ДС",
+                    "start": "15:15",
+                    "end": "17:00",
+                    "room": "212Е",
+                    "teacher": "гл. ас. д-р. Д. Николова"
                   }
                 ]
               },
@@ -69,25 +69,18 @@
                 "day": "Wednesday",
                 "subjects": [
                   {
-                    "subjectName": "2a) л.у. САА",
+                    "subjectName": "2б) л.у. БД",
                     "start": "9:15",
                     "end": "11:00",
-                    "room": "404TB",
+                    "room": "201TB",
                     "teacher": ""
                   },
                   {
-                    "subjectName": "ССП",
+                    "subjectName": "л. ООП",
                     "start": "11:15",
-                    "end": "12:45",
-                    "room": "",
-                    "teacher": ""
-                  },
-                  {
-                    "subjectName": "2б) л.у. САА",
-                    "start": "13:15",
-                    "end": "15:00",
-                    "room": "404ТВ",
-                    "teacher": ""
+                    "end": "13:00",
+                    "room": "114М",
+                    "teacher": "доц. Хр. Ненов"
                   }
                 ]
               },
@@ -95,24 +88,38 @@
                 "day": "Thursday",
                 "subjects": [
                   {
-                    "subjectName": "2a) УП-1ч",
-                    "start": "11:15",
-                    "end": "13:00",
-                    "room": "206РСС / НУК526",
+                    "subjectName": "2б) л.у. ООП 1ч",
+                    "start": "9:15",
+                    "end": "11:00",
+                    "room": "301ТВ",
                     "teacher": ""
                   },
                   {
-                    "subjectName": "с.у. Английски",
-                    "start": "13:15",
+                    "subjectName": "л. БД",
+                    "start": "11:15",
+                    "end": "13:00",
+                    "room": "212Е",
+                    "teacher": "доц. Г. Кунчев"
+                  },
+                  {
+                    "subjectName": "с.у. ДС",
+                    "start": "13:30",
                     "end": "15:00",
-                    "room": "НУК217",
-                    "teacher": "Б. Генова"
+                    "room": "НУК 316",
+                    "teacher": "Галя Господинова"
+                  },
+                  {
+                    "subjectName": "л.у. ОК",
+                    "start": "15:15",
+                    "end": "17:00",
+                    "room": "401ТВ",
+                    "teacher": ""
                   }
                 ]
               },
               {}
             ],
-            "2": {}
+            "4": {}
           }
         },
         "3": {}

@@ -54,7 +54,7 @@ export default function Home() {
 
   const [selectedSpecialty, setSelectedSpecialty] = useState('SIT');
   const [selectedGroup, setSelectedGroup] = useState(2);
-  const [selectedCourse, setSelectedCourse] = useState(1);
+  const [selectedCourse, setSelectedCourse] = useState(2);
 
   const [collectData, setCollectedData] = useState({});
   const [todayLectures, setTodayLectures] = useState(
