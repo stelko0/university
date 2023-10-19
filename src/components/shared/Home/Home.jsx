@@ -54,7 +54,7 @@ export default function Home() {
   const subGroup = [
     { value: "", text: "-- Choose a subgroup", disabled: true },
     { value: "a", text: "A" },
-    { value: "a", text: "B" }
+    { value: "b", text: "B" }
   ]
 
   const [selectedSpecialty, setSelectedSpecialty] = useState('SIT');
