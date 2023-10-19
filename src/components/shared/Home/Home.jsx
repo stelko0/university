@@ -51,10 +51,16 @@ export default function Home() {
     { value: 4, text: '4' },
     { value: 5, text: '5' },
   ];
+  const subGroup = [
+    { value: "", text: "-- Choose a subgroup", disabled: true },
+    { value: "a", text: "A" },
+    { value: "b", text: "B" }
+  ]
 
   const [selectedSpecialty, setSelectedSpecialty] = useState('SIT');
   const [selectedGroup, setSelectedGroup] = useState(2);
   const [selectedCourse, setSelectedCourse] = useState(2);
+  const [selectedSubGroup, setSelectedSubGroup] = useState("A")
 
   const [collectData, setCollectedData] = useState({});
   const [todayLectures, setTodayLectures] = useState(
@@ -74,6 +80,9 @@ export default function Home() {
   const handleChangeCourse = (event) => {
     setSelectedCourse(event.target.value);
   };
+  const handleChangeSubGroup = (event) => {
+    setSelectedSubGroup(event.target.value);
+  }
 
   function getLecture(updateData) {
     const updatedLectures = updateData.subjects?.map((element) => {
@@ -90,11 +99,6 @@ export default function Home() {
 
       const start = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.startHour, time.startMinutes);
       const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), time.endHour, time.endMinutes);
-
-
-
-
-
 
       let minutesAgo = 0;
       if (updateData.day === dayAsString[studyDays[day]]) {
@@ -167,16 +171,18 @@ export default function Home() {
   const [visibilityDays, setVisibilityDays] = useState(false);
   function check(e) {
     e.preventDefault();
-    if (!selectedSpecialty || !selectedGroup || !selectedCourse) {
+    if (!selectedSpecialty || !selectedGroup || !selectedCourse || !selectedSubGroup) {
       return;
     }
-    let lectureForToday =
-      data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
+
+    let lectureForToday = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
       selectedCourse
-      ]?.[studyDays[day]];
+    ]?.subgroup?.[selectedSubGroup]?.[studyDays[day]];
+
     let lectureForTommorow = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
       selectedCourse
-    ]?.[studyDays[day + 1]];
+    ]?.subgroup?.[selectedSubGroup]?.[studyDays[day + 1]];
+    console.log(lectureForToday);
     setTommorowLectures(lectureForTommorow);
     if (!lectureForToday) {
       document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
@@ -232,6 +238,26 @@ export default function Home() {
                 className="homeSection__select"
               >
                 {groups.map((option) => (
+                  <option
+                    disabled={option.disabled}
+                    key={option.value}
+                    value={option.value}
+                  >
+                    {option.text}
+                  </option>
+                ))}
+              </select>
+            </span>
+            <span className="homeSection__selectsLables">
+              <label htmlFor="" className="homeSection__labelsSelect">
+                Subgroup
+              </label>
+              <select
+                value={selectedSubGroup}
+                onChange={handleChangeSubGroup}
+                className="homeSection__select"
+              >
+                {subGroup.map((option) => (
                   <option
                     disabled={option.disabled}
                     key={option.value}

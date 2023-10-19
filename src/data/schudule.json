@@ -4,122 +4,238 @@
       "group": {
         "2": {
           "course": {
-            "2": [
-              {
-                "day": "Sunday",
-                "subjects": [
+            "2": {
+              "subgroup": {
+                "a": [
                   {
-                    "subjectName": "ПОЧИВКА"
+                    "day": "Sunday",
+                    "subjects": [
+                      {
+                        "subjectName": "ПОЧИВКА"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Monday",
+                    "subjects": [
+                      {
+                        "subjectName": "ССП - 3ч.",
+                        "start": "9:15",
+                        "end": "11:00",
+                        "room": "",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "л. СА",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "114М",
+                        "teacher": "гл.ас. д-р М. Тодорова"
+                      },
+                      {
+                        "subjectName": "с. у. СА",
+                        "start": "13:30",
+                        "end": "15:00",
+                        "room": "516",
+                        "teacher": "гл.ас. д-р М. Тодорова"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Tuesday",
+                    "subjects": [
+                      {
+                        "subjectName": "с.у. УСП (четна седмица)",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "404ТВ",
+                        "teacher": "Нели Калчева"
+                      },
+                      {
+                        "subjectName": "л. ОК",
+                        "start": "13:15",
+                        "end": "15:00",
+                        "room": "114М",
+                        "teacher": "доц. Ю. Петкова"
+                      },
+                      {
+                        "subjectName": "л. ДС",
+                        "start": "15:15",
+                        "end": "17:00",
+                        "room": "212Е",
+                        "teacher": "гл. ас. д-р. Д. Николова"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Wednesday",
+                    "subjects": [
+                      {
+                        "subjectName": "2a) л.у. БД",
+                        "start": "9:15",
+                        "end": "11:00",
+                        "room": "207TB",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "л. ООП",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "114М",
+                        "teacher": "доц. Хр. Ненов"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Thursday",
+                    "subjects": [
+                      {
+                        "subjectName": "л. БД",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "212Е",
+                        "teacher": "доц. Г. Кунчев"
+                      },
+                      {
+                        "subjectName": "с.у. ДС",
+                        "start": "13:30",
+                        "end": "15:00",
+                        "room": "НУК 316",
+                        "teacher": "Галя Господинова"
+                      },
+                      {
+                        "subjectName": "2а) л.у. ООП 1ч",
+                        "start": "15:15",
+                        "end": "17:00",
+                        "room": "307ТВ",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "2а) л.у. ОК",
+                        "start": "17:15",
+                        "end": "19:00",
+                        "room": "401ТВ",
+                        "teacher": ""
+                      }
+                    ]
+                  }
+                ],
+                "b": [
+                  {
+                    "day": "Sunday",
+                    "subjects": [
+                      {
+                        "subjectName": "ПОЧИВКА"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Monday",
+                    "subjects": [
+                      {
+                        "subjectName": "ССП - 3ч.",
+                        "start": "9:15",
+                        "end": "11:00",
+                        "room": "",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "л. СА",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "114М",
+                        "teacher": "гл.ас. д-р М. Тодорова"
+                      },
+                      {
+                        "subjectName": "с. у. СА",
+                        "start": "13:30",
+                        "end": "15:00",
+                        "room": "516",
+                        "teacher": "гл.ас. д-р М. Тодорова"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Tuesday",
+                    "subjects": [
+                      {
+                        "subjectName": "с.у. УСП (четна седмица)",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "404ТВ",
+                        "teacher": "Нели Калчева"
+                      },
+                      {
+                        "subjectName": "л. ОК",
+                        "start": "13:15",
+                        "end": "15:00",
+                        "room": "114М",
+                        "teacher": "доц. Ю. Петкова"
+                      },
+                      {
+                        "subjectName": "л. ДС",
+                        "start": "15:15",
+                        "end": "17:00",
+                        "room": "212Е",
+                        "teacher": "гл. ас. д-р. Д. Николова"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Wednesday",
+                    "subjects": [
+                      {
+                        "subjectName": "2б) л.у. БД",
+                        "start": "9:15",
+                        "end": "11:00",
+                        "room": "201TB",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "л. ООП",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "114М",
+                        "teacher": "доц. Хр. Ненов"
+                      }
+                    ]
+                  },
+                  {
+                    "day": "Thursday",
+                    "subjects": [
+                      {
+                        "subjectName": "2б) л.у. ООП 1ч",
+                        "start": "9:15",
+                        "end": "11:00",
+                        "room": "301ТВ",
+                        "teacher": ""
+                      },
+                      {
+                        "subjectName": "л. БД",
+                        "start": "11:15",
+                        "end": "13:00",
+                        "room": "212Е",
+                        "teacher": "доц. Г. Кунчев"
+                      },
+                      {
+                        "subjectName": "с.у. ДС",
+                        "start": "13:30",
+                        "end": "15:00",
+                        "room": "НУК 316",
+                        "teacher": "Галя Господинова"
+                      },
+                      {
+                        "subjectName": "л.у. ОК",
+                        "start": "15:15",
+                        "end": "17:00",
+                        "room": "401ТВ",
+                        "teacher": ""
+                      }
+                    ]
                   }
                 ]
-              },
-              {
-                "day": "Monday",
-                "subjects": [
-                  {
-                    "subjectName": "ССП - 3ч.",
-                    "start": "9:15",
-                    "end": "11:00",
-                    "room": "",
-                    "teacher": ""
-                  },
-                  {
-                    "subjectName": "л. СА",
-                    "start": "11:15",
-                    "end": "13:00",
-                    "room": "114М",
-                    "teacher": "гл.ас. д-р М. Тодорова"
-                  },
-                  {
-                    "subjectName": "с. у. СА",
-                    "start": "13:30",
-                    "end": "15:00",
-                    "room": "516",
-                    "teacher": "гл.ас. д-р М. Тодорова"
-                  }
-                ]
-              },
-              {
-                "day": "Tuesday",
-                "subjects": [
-                  {
-                    "subjectName": "с.у. УСП (четна седмица)",
-                    "start": "11:15",
-                    "end": "13:00",
-                    "room": "404ТВ",
-                    "teacher": "Нели Калчева"
-                  },
-                  {
-                    "subjectName": "л. ОК",
-                    "start": "13:15",
-                    "end": "15:00",
-                    "room": "114М",
-                    "teacher": "доц. Ю. Петкова"
-                  },
-                  {
-                    "subjectName": "л. ДС",
-                    "start": "15:15",
-                    "end": "17:00",
-                    "room": "212Е",
-                    "teacher": "гл. ас. д-р. Д. Николова"
-                  }
-                ]
-              },
-              {
-                "day": "Wednesday",
-                "subjects": [
-                  {
-                    "subjectName": "2б) л.у. БД",
-                    "start": "9:15",
-                    "end": "11:00",
-                    "room": "201TB",
-                    "teacher": ""
-                  },
-                  {
-                    "subjectName": "л. ООП",
-                    "start": "11:15",
-                    "end": "13:00",
-                    "room": "114М",
-                    "teacher": "доц. Хр. Ненов"
-                  }
-                ]
-              },
-              {
-                "day": "Thursday",
-                "subjects": [
-                  {
-                    "subjectName": "2б) л.у. ООП 1ч",
-                    "start": "9:15",
-                    "end": "11:00",
-                    "room": "301ТВ",
-                    "teacher": ""
-                  },
-                  {
-                    "subjectName": "л. БД",
-                    "start": "11:15",
-                    "end": "13:00",
-                    "room": "212Е",
-                    "teacher": "доц. Г. Кунчев"
-                  },
-                  {
-                    "subjectName": "с.у. ДС",
-                    "start": "13:30",
-                    "end": "15:00",
-                    "room": "НУК 316",
-                    "teacher": "Галя Господинова"
-                  },
-                  {
-                    "subjectName": "л.у. ОК",
-                    "start": "15:15",
-                    "end": "17:00",
-                    "room": "401ТВ",
-                    "teacher": ""
-                  }
-                ]
-              },
-              {}
-            ],
-            "4": {}
+              }
+            }
           }
         },
         "3": {}
