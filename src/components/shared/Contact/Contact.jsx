@@ -12,7 +12,7 @@ export default function Contact() {
   return (
     <div className="contactPage">
       <div className="contactPage__contacts">
-        <a href=" www.instagram.com/stelko0u">
+        <a href="https://www.instagram.com/stelko0u">
           <div className="contactPage__contact">
             <FontAwesomeIcon
               className="contactPage__contactIcon"
@@ -25,7 +25,7 @@ export default function Contact() {
             </span>
           </div>
         </a>
-        <a href="www.facebook.com/stelko0u">
+        <a href="https://www.facebook.com/stelko0u">
           <div className="contactPage__contact">
             <FontAwesomeIcon
               className="contactPage__contactIcon"
