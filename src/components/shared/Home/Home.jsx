@@ -209,6 +209,7 @@ export default function Home() {
         });
         return setDataError('No schedule found!');
       }
+      document.querySelector("footer").style.position = "relative";
       document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
         elem.style.display = 'inline-block';
       });
@@ -218,6 +219,7 @@ export default function Home() {
       getLectureTommrow(lectureForTommorow)
       setVisibilityDays(true);
     } else {
+      document.querySelector("footer").style.position = "absolute";
       setVisibilityDays(true);
       setIsWeekend(true)
     }
@@ -347,7 +349,7 @@ export default function Home() {
                       <h3>{key.remainingTimeText}</h3>
                     </span>
                   ))) : (
-                  <div className="homeSection__lectureBox">
+                  <div className="homeSection__lectureBox" hidden={!visibilityDays}>
                     <h1>Break time!</h1>
                   </div>
                 )
@@ -372,7 +374,7 @@ export default function Home() {
                     </span>
                   ))
                 ) :
-                  <div className="homeSection__lectureBox">
+                  <div className="homeSection__lectureBox" hidden={!visibilityDays}>
                     <h1>Break time!</h1>
                   </div>
                 }

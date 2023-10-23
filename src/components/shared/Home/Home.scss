@@ -9,6 +9,7 @@
   align-items: center;
   width: 100vw;
   font-family: 'Roboto';
+  min-height: calc(100vh - 100px);
   &__container {
     width: 80%;
     display: flex;
