@@ -23,7 +23,6 @@ export default function Home() {
     5: "Friday",
     6: "Saturday"
   }
-  console.log(dayAsString[day]);
 
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -177,7 +176,6 @@ export default function Home() {
       return;
     }
     if (day === 1 || day === 2 || day === 3 || day === 4) {
-      console.log(studyDays[day]);
       setIsWeekend(false);
       let lectureForToday = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
         selectedCourse
@@ -186,7 +184,6 @@ export default function Home() {
       let lectureForTommorow = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
         selectedCourse
       ]?.subgroup?.[selectedSubGroup]?.[studyDays[day + 1]];
-      console.log(lectureForToday);
       setTommorowLectures(lectureForTommorow);
       if (!lectureForToday) {
         document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
