@@ -10,9 +10,9 @@ export default function Home() {
     2: 2,
     3: 3,
     4: 4,
-    5: 1,
-    6: 1,
-    0: 1
+    5: 5,
+    6: 6,
+    0: 0
   }
   const dayAsString = {
     0: 'Sunday',
@@ -23,11 +23,13 @@ export default function Home() {
     5: "Friday",
     6: "Saturday"
   }
+  console.log(dayAsString[day]);
 
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
 
   const [dataError, setDataError] = useState('');
+  const [isWeekend, setIsWeekend] = useState(false);
 
   const specialty = [
     { value: '', text: '--Choose a specialty--', disabled: true },
@@ -117,7 +119,7 @@ export default function Home() {
           remainingMinutes += 60;
           remainingHours -= 1;
         }
-        remainingTimeText = `Remaining ${remainingHours}h and ${remainingMinutes}m`;
+        remainingTimeText = `Remaining to start ${remainingHours}h and ${remainingMinutes}m`;
       } else if (now > end) {
         remainingTimeText = "The lecture has already ended!"
       } else {
@@ -174,30 +176,36 @@ export default function Home() {
     if (!selectedSpecialty || !selectedGroup || !selectedCourse || !selectedSubGroup) {
       return;
     }
+    if (day === 1 || day === 2 || day === 3 || day === 4) {
+      console.log(studyDays[day]);
+      setIsWeekend(false);
+      let lectureForToday = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
+        selectedCourse
+      ]?.subgroup?.[selectedSubGroup]?.[studyDays[day]];
 
-    let lectureForToday = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
-      selectedCourse
-    ]?.subgroup?.[selectedSubGroup]?.[studyDays[day]];
-
-    let lectureForTommorow = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
-      selectedCourse
-    ]?.subgroup?.[selectedSubGroup]?.[studyDays[day + 1]];
-    console.log(lectureForToday);
-    setTommorowLectures(lectureForTommorow);
-    if (!lectureForToday) {
+      let lectureForTommorow = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
+        selectedCourse
+      ]?.subgroup?.[selectedSubGroup]?.[studyDays[day + 1]];
+      console.log(lectureForToday);
+      setTommorowLectures(lectureForTommorow);
+      if (!lectureForToday) {
+        document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
+          elem.style.display = 'none';
+        });
+        return setDataError('No schedule found!');
+      }
       document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
-        elem.style.display = 'none';
+        elem.style.display = 'inline-block';
       });
-      return setDataError('No schedule found!');
+      setDataError('');
+      setCollectedData(lectureForToday);
+      getLecture(lectureForToday);
+      getLectureTommrow(lectureForTommorow)
+      setVisibilityDays(true);
+    } else {
+      setVisibilityDays(true);
+      setIsWeekend(true)
     }
-    document.querySelectorAll('.homeSection__lectureBox').forEach((elem) => {
-      elem.style.display = 'inline-block';
-    });
-    setDataError('');
-    setCollectedData(lectureForToday);
-    getLecture(lectureForToday);
-    getLectureTommrow(lectureForTommorow)
-    setVisibilityDays(true);
   }
 
   return (
@@ -311,24 +319,32 @@ export default function Home() {
             <span className="homeSection__lectureAndDay">
               <h1 hidden={!visibilityDays} className='homeSection__day'>Today - {dayAsString[studyDays[day]]}</h1>
               <span className="homeSection__lectureList">
-                {todayLectures.map((key) => (
-                  <span className="homeSection__lectureBox" key={key.subjectName}>
-                    <h2>{key.subjectName}</h2>
-                    <h2>
-                      {key.start} - {key.end}
-                    </h2>
-                    <h2>{key.room}</h2>
-                    <h2>{key.teacher}</h2>
-                    <h3>{key.remainingTimeText}</h3>
-                  </span>
-                ))}
+                {todayLectures && todayLectures.length && !isWeekend ? (
+
+                  todayLectures.map((key) => (
+                    <span className="homeSection__lectureBox" key={key.subjectName}>
+                      <h2>{key.subjectName}</h2>
+                      <h2>
+                        {key.start} - {key.end}
+                      </h2>
+                      <h2>{key.room}</h2>
+                      <h2>{key.teacher}</h2>
+                      <h3>{key.remainingTimeText}</h3>
+                    </span>
+                  ))) : (
+                  <div className="homeSection__lectureBox">
+                    <h1>Break time!</h1>
+                  </div>
+                )
+                }
+
               </span>
 
             </span>
             <span className="homeSection__lectureAndDay">
               <h1 hidden={!visibilityDays} className='homeSection__day'>Next day - {dayAsString[studyDays[day + 1]]}</h1>
               <span className="homeSection__lectureList">
-                {tommorowLectures && tommorowLectures.length > 0 ? (
+                {tommorowLectures && tommorowLectures.length > 0 && !isWeekend ? (
                   tommorowLectures.map((key) => (
                     <span className="homeSection__lectureBox" key={key.subjectName}>
                       <h2>{key.subjectName}</h2>
@@ -340,7 +356,11 @@ export default function Home() {
                       <h3>{key.remainingTimeText}</h3>
                     </span>
                   ))
-                ) : (console.log())}
+                ) :
+                  <div className="homeSection__lectureBox">
+                    <h1>Break time!</h1>
+                  </div>
+                }
               </span>
             </span>
           </span>
