@@ -58,10 +58,10 @@ export default function Home() {
     { value: "b", text: "B" }
   ]
 
-  const [selectedSpecialty, setSelectedSpecialty] = useState('SIT');
-  const [selectedGroup, setSelectedGroup] = useState(2);
-  const [selectedCourse, setSelectedCourse] = useState(2);
-  const [selectedSubGroup, setSelectedSubGroup] = useState("a")
+  const [selectedSpecialty, setSelectedSpecialty] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedSubGroup, setSelectedSubGroup] = useState("")
 
   const [collectData, setCollectedData] = useState({});
   const [todayLectures, setTodayLectures] = useState(
@@ -84,6 +84,16 @@ export default function Home() {
   const handleChangeSubGroup = (event) => {
     setSelectedSubGroup(event.target.value);
   }
+  useEffect(() => {
+    if (localStorage.getItem('userData') != null) {
+      let userData = JSON.parse(localStorage.getItem('userData'));
+      setSelectedSpecialty(userData.selectedSpecialty);
+      setSelectedCourse(userData.selectedCourse);
+      setSelectedGroup(userData.selectedGroup);
+      setSelectedSubGroup(userData.selectedSubGroup);
+
+    }
+  }, [])
 
   function getLecture(updateData) {
     const updatedLectures = updateData.subjects?.map((element) => {
@@ -171,10 +181,18 @@ export default function Home() {
   }, [collectData]);
   const [visibilityDays, setVisibilityDays] = useState(false);
   function check(e) {
+
     e.preventDefault();
     if (!selectedSpecialty || !selectedGroup || !selectedCourse || !selectedSubGroup) {
       return;
     }
+    let userData = {
+      selectedSpecialty,
+      selectedCourse,
+      selectedGroup,
+      selectedSubGroup
+    }
+    localStorage.setItem('userData', JSON.stringify(userData));
     if (day === 1 || day === 2 || day === 3 || day === 4) {
       setIsWeekend(false);
       let lectureForToday = data.specialty?.[selectedSpecialty]?.group?.[selectedGroup]?.course?.[
